@@ -217,7 +217,7 @@ hr {
 
 #letter:focus {
     outline: none;
-    border-bottom: 1px solid #285473;
+    border-bottom: 1px solid #b7b8bd;
     transition: 500ms;
 }
 

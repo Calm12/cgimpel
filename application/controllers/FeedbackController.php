@@ -5,7 +5,9 @@
         public function actionIndex(){
             $this->checkAccess();
 
-            $this->view->render('feedback');
+            $this->view->setTitle('Обратная связь');
+            $this->view->setPage('feedback');
+            $this->view->render('template');
         }
 
     }

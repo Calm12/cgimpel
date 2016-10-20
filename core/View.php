@@ -7,7 +7,12 @@
         private $content;
 
         public function render($template){
-            include ROOT.'/application/views/' . $template . '.php';
+            if(file_exists(ROOT.'/application/views/' . $template . '.php')){
+                include ROOT . '/application/views/' . $template . '.php';
+            }
+            else{
+                include(ROOT.'/application/views/404.php');
+            }
         }
 
         public function includePage(){
