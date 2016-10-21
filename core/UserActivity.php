@@ -11,8 +11,8 @@
                 $last_unix_time = strtotime(Session::get('user')->getLastActive());
 
                 if((((int)$last_unix_time) + 300) < (int)$current_time){
-                    Session::get('user')->updateActivity();
-                    Session::get('user')->commitActivity();
+                    User::getUser()->updateActivity();
+                    User::getUser()->commitActivity();
                 }
             }
         }
