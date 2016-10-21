@@ -165,7 +165,7 @@
         /**
          * @return User|null Объект User или null, если не найдено.
          */
-        public static function getUser() : User{
+        public static function getUser(){
             return Session::get('user');
         }
 

@@ -197,30 +197,6 @@ hr {
     /*border: solid 1px;*/
 }
 
-#letter {
-    border: none;
-    border-bottom: 1px solid #edeef0;
-    width: 99%;
-    height: 400px;
-
-    font-family: Roboto, sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 16px;
-
-    margin-top: 0px;
-    padding: 3px;
-    resize: none;
-
-    transition: 500ms;
-}
-
-#letter:focus {
-    outline: none;
-    border-bottom: 1px solid #b7b8bd;
-    transition: 500ms;
-}
-
 ::-webkit-scrollbar{
     width:12px;
 }
@@ -240,25 +216,4 @@ hr {
 ::-webkit-scrollbar-track:hover{
     border-left: solid 1px #aaa;
     background-color: #edeef0;
-}
-
-.flat_button {
-    padding: 7px 16px 8px;
-    margin: 10px 0 0 0;
-    font-size: 12.5px;
-    display: inline-block;
-    zoom: 1;
-    cursor: pointer;
-    white-space: nowrap;
-    outline: none;
-    font-family: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,sans-serif;
-    vertical-align: top;
-    line-height: 15px;
-    text-align: center;
-    text-decoration: none;
-    background-color: #5e81a8;
-    color: #fff;
-    border: 0;
-    border-radius: 2px;
-    box-sizing: border-box;
 }

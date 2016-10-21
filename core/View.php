@@ -48,6 +48,16 @@
             $this->content = $content;
         }
 
+        public function includeDynamicMenu(){
+            if(file_exists($this->getDynamicMenu())){
+                include($this->getDynamicMenu());
+            }
+        }
+
+        public function getDynamicMenu(){
+            return ROOT.'/application/views/control_panels/'.$this->page.'.php';
+        }
+
         public function includeHeaders(){
             if(file_exists($this->getHeaders())){
                 include($this->getHeaders());

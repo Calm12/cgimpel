@@ -6,17 +6,19 @@
         private $name;
         private $body;
         private $date;
+        private $author;
 
-        public function __construct($id, $name, $body, $date){
+        public function __construct($id, $name, $body, $date, $author){
             $this->id = $id;
             $this->name = $name;
             $this->body = $body;
             $this->date = $date;
+            $this->author = $author;
         }
 
-        public static function create($title, $body){
+        public static function create($title, $body, $author){
             global $db;
-            $sql = 'INSERT INTO news (`name`, body) VALUES(:title, :body);';
+            $sql = 'INSERT INTO news (title, body, author) VALUES(:title, :body, :author);';
             $stm = $db->prepare($sql);
 
             try{
@@ -24,6 +26,7 @@
                 $result = $stm->execute(array(
                     ':title' => $title,
                     ':body' => $body,
+                    ':author' => $author,
                 ));
                 $db->commit();
 
@@ -72,7 +75,7 @@
 
                 $news = array();
                 while($arr = $stm->fetch()){
-                    $news[] = new News($arr['id'], $arr['name'], $arr['body'], $arr['date']);
+                    $news[] = new News($arr['id'], $arr['title'], $arr['body'], $arr['date'], $arr['author']);
                 }
 
                 return $news;
@@ -93,7 +96,7 @@
                 $stm->execute();
                 $arr = $stm->fetch();
                 if($arr){
-                    return new News($arr['id'], $arr['name'], $arr['body'], $arr['date']);
+                    return new News($arr['id'], $arr['title'], $arr['body'], $arr['date'], $arr['author']);
                 }
                 else{
                     return null;
@@ -120,5 +123,9 @@
 
         public function getDate(){
             return $this->date;
+        }
+
+        public function getAuthor(){
+            return $this->author;
         }
     }

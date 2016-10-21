@@ -19,7 +19,13 @@
     </div>
 
     <aside class="left-sidebar">
-        <?php include 'parts/menu.php'; ?>
+        <div class="menu">
+            <?php include 'parts/menu-top.php'; ?>
+            <div class="horizontal-separator">
+                <hr>
+            </div>
+            <?php $this->includeDynamicMenu();?>
+        </div>
     </aside>
 
 </div>
