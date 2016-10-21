@@ -20,7 +20,7 @@
                 $controllerName = $piecesOfUrl[1];
             }
             else{
-                $controllerName = 'main';
+                $controllerName = 'news';
             }
             if(!empty($piecesOfUrl[2])){
                 $action = $piecesOfUrl[2];

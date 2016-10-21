@@ -6,7 +6,7 @@
             $this->checkAccess();
 
 
-            $this->view->render("empty");
+            $this->view->render("template");
         }
 
     }
