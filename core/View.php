@@ -2,9 +2,14 @@
 
     class View {
 
+        private $controller;
         private $title = 'Новая страница';
         private $page = 'page';
         private $content;
+
+        public function __construct($controller){
+            $this->controller = $controller;
+        }
 
         public function render($template){
             if(file_exists(ROOT.'/application/views/' . $template . '.php')){

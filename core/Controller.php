@@ -7,7 +7,7 @@
         public $view;
 
         public function __construct(){
-            $this->view = new View();
+            $this->view = new View($this);
         }
 
         public function checkAccess(){
@@ -16,14 +16,14 @@
                 exit();
             }
 
-            if(!$this->checkPermissions()){
+            if(!$this->checkPermissions(Utils::getUri())){
                 header("Location: /");
                 exit();
             }
         }
 
-        public function checkPermissions() : bool{
-            if(User::getUser()->getAccessLevel() < Permissions::getPermission(Utils::getUri())){
+        public function checkPermissions($uri) : bool{
+            if(User::getUser()->getAccessLevel() < Permissions::getPermission($uri)){
                 return false;
             }
             else{

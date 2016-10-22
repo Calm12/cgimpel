@@ -13,8 +13,10 @@
         <a href="/feedback/new">
             <li>Создать тикет</li>
         </a>
-        <a href="/feedback/active">
-            <li>Активные тикеты</li>
-        </a>
+        <? if($this->controller->checkPermissions("/feedback/active")): ?>
+            <a href="/feedback/active">
+                <li>Активные тикеты</li>
+            </a>
+        <? endif; ?>
     </ul>
 </div>
