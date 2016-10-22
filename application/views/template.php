@@ -25,6 +25,7 @@
                 <hr>
             </div>
             <?php $this->includeDynamicMenu();?>
+            <?php include 'control_panels/menu.php'; ?>
         </div>
     </aside>
 

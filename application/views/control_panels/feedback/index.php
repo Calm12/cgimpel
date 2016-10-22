@@ -7,5 +7,3 @@
 <div class="horizontal-separator">
     <hr>
 </div>
-
-<?php include ROOT.'/application/views/control_panels/menu.php'; ?>

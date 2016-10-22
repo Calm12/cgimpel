@@ -1,1 +1,0 @@
-<?php include ROOT.'/application/views/control_panels/menu.php'; ?>
