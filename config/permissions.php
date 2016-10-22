@@ -10,5 +10,6 @@
         '/news/create'      => 150,
         '/feedback/'        => 25,
         '/feedback/new'     => 25,
+        '/feedback/create'  => 25,
         '/feedback/active'  => 150,
     );
