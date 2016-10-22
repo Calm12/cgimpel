@@ -197,8 +197,8 @@
             return $this->last_active;
         }
 
-        public function getAccessLevel(){
-            return $this->access_level;
+        public function getAccessLevel() : int{
+            return (int)$this->access_level;
         }
 
         public function getUsedToken(){

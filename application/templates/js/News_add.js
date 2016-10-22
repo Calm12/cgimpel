@@ -5,7 +5,7 @@ function add(){
 
     $.ajax({
         type: 'POST',
-        url: '/news/create/',
+        url: '/news/create',
         data: {
             title: title.value,
             body: body.value

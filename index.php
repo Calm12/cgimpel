@@ -5,6 +5,8 @@
 
     @require_once ROOT . '/config/config.php';
     @require_once ROOT . '/core/Session.php';
+    @require_once ROOT . '/core/Permissions.php';
+    @require_once ROOT . '/core/Utils.php';
     @require_once ROOT . '/core/Router.php';
     @require_once ROOT . '/core/Model.php';
     @require_once ROOT . '/core/View.php';

@@ -15,7 +15,7 @@
         <a href="/settings/">
             <li>Настройки</li>
         </a>
-        <a href="/auth/logout/">
+        <a href="/auth/logout">
             <li>Выйти</li>
         </a>
     </ul>

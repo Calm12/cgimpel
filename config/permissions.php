@@ -1,8 +1,14 @@
 <?php
 
     $permissions = array(
-        '/' => 50,
-        '/messages/' => 100,
-        '/auth/' => 0,
-        '/reg/' => 0,
+        '/'                 => 0,
+        '/messages/'        => 50,
+        '/token/'           => 50,
+        '/settings/'        => 25,
+        '/news/'            => 0,
+        '/news/add'         => 150,
+        '/news/create'      => 150,
+        '/feedback/'        => 25,
+        '/feedback/new'     => 25,
+        '/feedback/active'  => 150,
     );

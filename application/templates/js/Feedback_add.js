@@ -5,7 +5,7 @@ function add(){
 
     $.ajax({
         type: 'POST',
-        url: '/feedback/create/',
+        url: '/feedback/create',
         data: {
             title: title.value,
             body: body.value

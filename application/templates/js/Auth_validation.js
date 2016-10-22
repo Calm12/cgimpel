@@ -47,7 +47,7 @@ function reg(){
 
     $.ajax({
         type: 'POST',
-        url: '/reg/check/',
+        url: '/reg/check',
         data: {
             login: login.value,
             email: email.value,
@@ -86,7 +86,7 @@ function loginCheck() {
 
     $.ajax({
         type: 'POST',
-        url: '/reg/logincheck/',
+        url: '/reg/logincheck',
         data: {
             login: login.value
         },
@@ -110,7 +110,7 @@ function auth(){
 
     $.ajax({
         type: 'POST',
-        url: '/auth/check/',
+        url: '/auth/check',
         data: {
             login: login,
             password: password

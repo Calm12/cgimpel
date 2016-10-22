@@ -15,6 +15,20 @@
                 $this->view->render("auth");
                 exit();
             }
+
+            if(!$this->checkPermissions()){
+                header("Location: /");
+                exit();
+            }
+        }
+
+        public function checkPermissions() : bool{
+            if(User::getUser()->getAccessLevel() < Permissions::getPermission(Utils::getUri())){
+                return false;
+            }
+            else{
+                return true;
+            }
         }
 
         public function authorised() : bool{

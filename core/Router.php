@@ -7,14 +7,13 @@
          */
         public function run(){
 
-            if(strpos($_SERVER['REQUEST_URI'], '?') !== false){
-                $uri = substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '?'));
-            }
-            else{
-                $uri = $_SERVER['REQUEST_URI'];
-            }
+            $uri = Utils::getUri();
 
             $piecesOfUrl = explode('/', $uri);
+
+            if(count($piecesOfUrl) > 3){
+                (new Errors())->error_404();
+            }
 
             if(!empty($piecesOfUrl[1]) AND isset($piecesOfUrl[1])){
                 $controllerName = $piecesOfUrl[1];
