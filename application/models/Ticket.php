@@ -98,7 +98,36 @@
             }
         }
 
-        public static function load(int $offset, int $count, bool $archive = false){
+        public static function load(int $offset, int $count, $user, bool $archive = false){
+            global $db;
+            if($archive){
+                $sql = 'SELECT * FROM feedback WHERE author = :author AND closed = 1 AND deleted = 0 ORDER BY id DESC LIMIT :offset,:count;';
+            }
+            else{
+                $sql = 'SELECT * FROM feedback WHERE author = :author AND closed = 0 AND deleted = 0 ORDER BY id DESC LIMIT :offset,:count;';
+            }
+            $stm = $db->prepare($sql);
+
+            try{
+                $stm->bindParam(':offset', $offset, PDO::PARAM_INT);
+                $stm->bindParam(':count', $count, PDO::PARAM_INT);
+                $stm->bindParam(':author', $user);
+                $stm->execute();
+
+                $news = array();
+                while($arr = $stm->fetch()){
+                    $news[] = new Ticket($arr['id'], $arr['title'], $arr['body'], $arr['date'], $arr['author'], $arr['closed']);
+                }
+
+                return $news;
+            }
+            catch(PDOException $ex){
+                //логи
+                return null;
+            }
+        }
+
+        public static function loadAll(int $offset, int $count, bool $archive = false){
             global $db;
             if($archive){
                 $sql = 'SELECT * FROM feedback WHERE closed = 1 AND deleted = 0 ORDER BY id DESC LIMIT :offset,:count;';
@@ -115,7 +144,7 @@
 
                 $news = array();
                 while($arr = $stm->fetch()){
-                    $news[] = new News($arr['id'], $arr['title'], $arr['body'], $arr['date'], $arr['author'], $arr['closed']);
+                    $news[] = new Ticket($arr['id'], $arr['title'], $arr['body'], $arr['date'], $arr['author'], $arr['closed']);
                 }
 
                 return $news;
@@ -136,7 +165,7 @@
                 $stm->execute();
                 $arr = $stm->fetch();
                 if($arr){
-                    return new News($arr['id'], $arr['title'], $arr['body'], $arr['date'], $arr['author'], $arr['closed']);
+                    return new Ticket($arr['id'], $arr['title'], $arr['body'], $arr['date'], $arr['author'], $arr['closed']);
                 }
                 else{
                     return null;

@@ -11,7 +11,7 @@
 
             $this->view->setContent(News::load('0', '10'));
 
-            $this->view->setPage('news');
+            $this->view->setPage('news/index');
             $this->view->render('template');
         }
 
@@ -20,7 +20,7 @@
 
             $this->view->setTitle('Добавление новости');
 
-            $this->view->setPage('newsadd');
+            $this->view->setPage('news/add');
             $this->view->render('template');
         }
 

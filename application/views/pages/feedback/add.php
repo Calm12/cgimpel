@@ -5,13 +5,9 @@
 <?php endif; ?>
 
 <div class="content">
-    <form>
+    <form action="javascript:add()">
+        <textarea id="title" placeholder="Введите тему вашего сообщения..." maxlength="64" required></textarea>
         <textarea id="letter" placeholder="Введите текст вашего сообщения..." maxlength="4000" required></textarea>
-        <button class="flat_button" onclick="">Отправить письмо</button>
+        <button type="submit" class="flat_button">Отправить письмо</button>
     </form>
 </div>
-
-<!--div class="footer">
-    <hr>
-    CGimpel.ru (c) 2014-2016
-</div-->

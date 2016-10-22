@@ -1,18 +1,18 @@
 function add(){
 
-    var title = document.getElementById('newstitle');
+    var title = document.getElementById('title');
     var body = document.getElementById('letter');
 
     $.ajax({
         type: 'POST',
-        url: '/news/create/',
+        url: '/feedback/create/',
         data: {
             title: title.value,
             body: body.value
         },
         success: function(res) {
             if(res === 'created'){
-                window.location.href = '/news/';
+                window.location.href = '/feedback/';
             }
             else{
                 alert('Ошибка. И вообще надо сделать popup для таких сообщений епт');

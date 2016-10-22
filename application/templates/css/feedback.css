@@ -42,3 +42,27 @@
     border-bottom: 1px solid #b7b8bd;
     transition: 500ms;
 }
+
+#title {
+    border: none;
+    border-bottom: 1px solid #edeef0;
+    width: 99%;
+    height: 80px;
+
+    font-family: Roboto, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+
+    margin-top: 0px;
+    padding: 3px;
+    resize: none;
+
+    transition: 500ms;
+}
+
+#title:focus {
+    outline: none;
+    border-bottom: 1px solid #285473;
+    transition: 500ms;
+}
