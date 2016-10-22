@@ -5,7 +5,7 @@
 
         <div class="content">
 
-            <h1><? echo $article->getName(); ?></h1>
+            <h1><? echo $article->getTitle(); ?></h1>
             <? echo $article->getBody(); ?>
 
         </div>
