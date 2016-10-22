@@ -5,6 +5,7 @@
         private $controller;
         private $title = 'Новая страница';
         private $page = 'page';
+        private $menu;
         private $content;
 
         public function __construct($controller){
@@ -51,6 +52,14 @@
 
         public function setContent($content){
             $this->content = $content;
+        }
+
+        public function getMenu(){
+            return $this->menu;
+        }
+
+        public function setMenu(array $menu){
+            $this->menu = $menu;
         }
 
         public function includeDynamicMenu(){

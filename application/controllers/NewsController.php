@@ -11,6 +11,10 @@
 
             $this->view->setContent(News::load(0, 10));
 
+            $this->view->setMenu(array(
+                '/news/add' => 'Добавить новость',
+                '/news/my' => 'Ваши новости',
+            ));
             $this->view->setPage('news/index');
             $this->view->render('template');
         }
@@ -20,6 +24,10 @@
 
             $this->view->setTitle('Добавление новости');
 
+            $this->view->setMenu(array(
+                '/news/' => 'Все новости',
+                '/news/my' => 'Ваши новости',
+            ));
             $this->view->setPage('news/add');
             $this->view->render('template');
         }

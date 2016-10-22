@@ -8,15 +8,4 @@
     <hr>
 </div>
 
-<div class="menu-bottom">
-    <ul type="none">
-        <? if($this->controller->checkPermissions("/news/add")): ?>
-            <a href="/news/add">
-                <li>Добавить новость</li>
-            </a>
-        <? endif; ?>
-        <a href="/news/my">
-            <li>Ваши новости</li>
-        </a>
-    </ul>
-</div>
+<?php include ROOT.'/application/views/control_panels/menu.php'; ?>

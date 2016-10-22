@@ -8,13 +8,4 @@
     <hr>
 </div>
 
-<div class="menu-bottom">
-    <ul type="none">
-        <a href="/feedback/new">
-            <li>Создать тикет</li>
-        </a>
-        <a href="/feedback/">
-            <li>Ваши тикеты</li>
-        </a>
-    </ul>
-</div>
+<?php include ROOT.'/application/views/control_panels/menu.php'; ?>
