@@ -43,7 +43,7 @@
 
         public static function getCount(){
             global $db;
-            $sql = 'SELECT COUNT(*) as count FROM news;';
+            $sql = 'SELECT COUNT(*) as count FROM news WHERE deleted = 0;';
             $stm = $db->prepare($sql);
 
             try{
@@ -65,7 +65,7 @@
 
         public static function load(int $offset, int $count){
             global $db;
-            $sql = 'SELECT * FROM news ORDER BY id DESC LIMIT :offset,:count;';
+            $sql = 'SELECT * FROM news WHERE deleted = 0 ORDER BY id DESC LIMIT :offset,:count;';
             $stm = $db->prepare($sql);
 
             try{
@@ -88,7 +88,7 @@
 
         public static function loadById(int $id){
             global $db;
-            $sql = 'SELECT * FROM news WHERE id = :id;';
+            $sql = 'SELECT * FROM news WHERE id = :id AND deleted = 0;';
             $stm = $db->prepare($sql);
 
             try{

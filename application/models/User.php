@@ -63,7 +63,7 @@
          */
         public static function load(string $login) : User{
             global $db;
-            $sql = 'SELECT * FROM accounts WHERE login = :login;';
+            $sql = 'SELECT * FROM accounts WHERE login = :login AND deleted = 0;';
             $stm = $db->prepare($sql);
 
             try{

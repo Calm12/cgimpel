@@ -17,7 +17,7 @@
 
         public static function load($id){
             global $db;
-            $sql = 'SELECT * FROM tokens WHERE token_id = :id;';
+            $sql = 'SELECT * FROM tokens WHERE token_id = :id AND deleted = 0;';
             $stm = $db->prepare($sql);
 
             try{

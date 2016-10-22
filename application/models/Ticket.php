@@ -74,10 +74,10 @@
         public static function getCount(bool $archive = false){
             global $db;
             if($archive){
-                $sql = 'SELECT COUNT(*) as count FROM feedback WHERE closed = 1;';
+                $sql = 'SELECT COUNT(*) as count FROM feedback WHERE closed = 1 AND deleted = 0;';
             }
             else{
-                $sql = 'SELECT COUNT(*) as count FROM feedback WHERE closed = 0;';
+                $sql = 'SELECT COUNT(*) as count FROM feedback WHERE closed = 0 AND deleted = 0;';
             }
             $stm = $db->prepare($sql);
 
@@ -101,10 +101,10 @@
         public static function load(int $offset, int $count, bool $archive = false){
             global $db;
             if($archive){
-                $sql = 'SELECT * FROM feedback WHERE closed = 1 ORDER BY id DESC LIMIT :offset,:count;';
+                $sql = 'SELECT * FROM feedback WHERE closed = 1 AND deleted = 0 ORDER BY id DESC LIMIT :offset,:count;';
             }
             else{
-                $sql = 'SELECT * FROM feedback WHERE closed = 0 ORDER BY id DESC LIMIT :offset,:count;';
+                $sql = 'SELECT * FROM feedback WHERE closed = 0 AND deleted = 0 ORDER BY id DESC LIMIT :offset,:count;';
             }
             $stm = $db->prepare($sql);
 
@@ -128,7 +128,7 @@
 
         public static function loadById(int $id){
             global $db;
-            $sql = 'SELECT * FROM feedback WHERE id = :id;';
+            $sql = 'SELECT * FROM feedback WHERE id = :id AND deleted = 0;';
             $stm = $db->prepare($sql);
 
             try{
