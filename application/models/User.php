@@ -145,11 +145,16 @@
 
             try{
                 $stm->bindParam(':login', $login);
-                if($stm->execute()){
-                    return ($stm->fetch())['id'];
+                $stm->execute();
+                $id = ($stm->fetch())['id'];
+                if($id === null){
+                    return false;
+                }
+                else if($id === false){
+                    return false;
                 }
                 else{
-                    return false;
+                    return true;
                 }
             }
             catch(PDOException $ex){
