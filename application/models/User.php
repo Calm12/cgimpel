@@ -59,9 +59,9 @@
         /**
          * Загружает из БД пользователя по логину и возвращает объект User
          * @param string $login
-         * @return User
+         * @return User|null
          */
-        public static function load(string $login) : User{
+        public static function load(string $login){
             global $db;
             $sql = 'SELECT * FROM accounts WHERE login = :login AND deleted = 0;';
             $stm = $db->prepare($sql);
