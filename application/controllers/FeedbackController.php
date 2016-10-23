@@ -1,6 +1,7 @@
 <?php
 
     require_once ROOT . '/application/models/Ticket.php';
+    require_once ROOT . '/core/Paginator.php';
 
     class FeedbackController extends Controller {
 
@@ -9,7 +10,20 @@
 
             $this->view->setTitle('Обратная связь');
 
-            $this->view->setContent(Ticket::load('0', '10', User::getUser()->getId()));
+            $this->setPaginator(new Paginator());
+            $this->getPaginator()->setCount(Ticket::getCount(User::getUser()->getId()));
+            $this->getPaginator()->setOffset((int)($_GET['o'] ?? 0));
+            $this->getPaginator()->setSection((int)($_GET['s'] ?? 10));
+
+            $this->view->setProperties(array(
+                'count' => $this->getPaginator()->getCount(),
+                'offset' => $this->getPaginator()->getOffset(),
+                'section' => $this->getPaginator()->getOffset() + $this->getPaginator()->getSection(),
+                'left' => Utils::gets('o',$this->getPaginator()->getLeftPointer()),
+                'right' => Utils::gets('o',$this->getPaginator()->getRightPointer()),
+            ));
+
+            $this->view->setContent(Ticket::load($this->getPaginator()->getOffset(), $this->getPaginator()->getSection(), User::getUser()->getId()));
 
             $this->view->setMenu(array(
                 '/feedback/new' => 'Создать тикет',
@@ -24,7 +38,20 @@
 
             $this->view->setTitle('Активные тикеты');
 
-            $this->view->setContent(Ticket::loadAll('0', '10'));
+            $this->setPaginator(new Paginator());
+            $this->getPaginator()->setCount(Ticket::getCountAll());
+            $this->getPaginator()->setOffset((int)($_GET['o'] ?? 0));
+            $this->getPaginator()->setSection((int)($_GET['s'] ?? 10));
+
+            $this->view->setProperties(array(
+                'count' => $this->getPaginator()->getCount(),
+                'offset' => $this->getPaginator()->getOffset(),
+                'section' => $this->getPaginator()->getOffset() + $this->getPaginator()->getSection(),
+                'left' => Utils::gets('o',$this->getPaginator()->getLeftPointer()),
+                'right' => Utils::gets('o',$this->getPaginator()->getRightPointer()),
+            ));
+
+            $this->view->setContent(Ticket::loadAll($this->getPaginator()->getOffset(), $this->getPaginator()->getSection()));
 
             $this->view->setMenu(array(
                 '/feedback/new' => 'Создать тикет',

@@ -41,6 +41,8 @@ body {
     font-weight: 400;
     line-height: 19px;
     background-color: #edeef0;
+
+    overflow-y: scroll;
 }
 
 a {
@@ -132,9 +134,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin: 10px 10px 10px 30px;
     position: fixed;
     line-height: 24px;
-    /*border-radius: 2px;
+
+    border-radius: 2px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-    background: #fff;*/
+    background: #fff;
 
     /*overflow-y: scroll;*/
 }
@@ -164,8 +167,14 @@ ul {
 
 .menu-item {
     color: #285473;
-    padding: 2px 5px 2px 5px;
+    display: inline;
+    padding: 7px 12.5px 6px 12.5px;
     cursor: pointer;
+}
+
+.menu-text {
+    color: #285473;
+    padding: 2px 10px 2px 15px;
 }
 
 .menu-item:hover {
@@ -190,7 +199,7 @@ hr {
 
 .menu-middle {
     /*border: solid 1px;*/
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 
 .menu-bottom {

@@ -71,7 +71,35 @@
             }
         }
 
-        public static function getCount(bool $archive = false){
+        public static function getCount($user, bool $archive = false){
+            global $db;
+            if($archive){
+                $sql = 'SELECT COUNT(*) as count FROM feedback WHERE author = :author AND closed = 1 AND deleted = 0;';
+            }
+            else{
+                $sql = 'SELECT COUNT(*) as count FROM feedback WHERE author = :author AND closed = 0 AND deleted = 0;';
+            }
+            $stm = $db->prepare($sql);
+
+            try{
+                $stm->bindParam(':author', $user);
+                $stm->execute();
+                $arr = $stm->fetch();
+                if($arr){
+                    return (int)$arr['count'];
+                }
+                else{
+                    return null;
+                }
+
+            }
+            catch(PDOException $ex){
+                //логи
+                return null;
+            }
+        }
+
+        public static function getCountAll(bool $archive = false){
             global $db;
             if($archive){
                 $sql = 'SELECT COUNT(*) as count FROM feedback WHERE closed = 1 AND deleted = 0;';

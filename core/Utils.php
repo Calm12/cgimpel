@@ -15,4 +15,30 @@
             }
         }
 
+        public static function gets($param, $value){
+            $result = "?";
+            $done = false;
+            $cnt = 0;
+            foreach($_GET as $key => $curr){
+                if(!($cnt == 0)){
+                    $result .= "&";
+                }
+                if($key == $param){
+                    $result .= $param."=".$value;
+                    $done = true;
+                }
+                else{
+                    $result .= $key."=".$curr;
+                }
+                $cnt++;
+            }
+            if(!$done){
+                if(!($cnt == 0)){
+                    $result .= "&";
+                }
+                $result .= $param."=".$value;
+            }
+            return $result;
+        }
+
     }

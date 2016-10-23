@@ -7,6 +7,7 @@
         private $page = 'page';
         private $menu;
         private $content;
+        private $properties = array();
 
         public function __construct($controller){
             $this->controller = $controller;
@@ -60,6 +61,22 @@
 
         public function setMenu(array $menu){
             $this->menu = $menu;
+        }
+
+        public function getProperties(){
+            return $this->properties;
+        }
+
+        public function setProperties($properties){
+            $this->properties = $properties;
+        }
+
+        public function setProperty($key, $value){
+            $this->properties[$key] = $value;
+        }
+
+        public function getProperty($key){
+            return $this->properties[$key];
         }
 
         public function includeDynamicMenu(){

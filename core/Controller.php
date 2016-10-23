@@ -5,6 +5,7 @@
 
     class Controller {
         public $view;
+        private $paginator;
 
         public function __construct(){
             $this->view = new View($this);
@@ -42,5 +43,13 @@
 
         public function actionIndex(){
 
+        }
+
+        public function getPaginator() : Paginator{
+            return $this->paginator;
+        }
+
+        public function setPaginator(Paginator $paginator){
+            $this->paginator = $paginator;
         }
     }
