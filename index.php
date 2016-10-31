@@ -1,6 +1,7 @@
 <?php
 
     ini_set('display_errors', 1);
+	//ini_set('error_reporting',2047);
     define('ROOT', dirname(__FILE__));
 
     @require_once ROOT . '/config/config.php';
