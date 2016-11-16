@@ -22,3 +22,4 @@
 
     $router = new Router();
     $router->run();
+    echo 'TEST';
