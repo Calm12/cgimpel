@@ -19,6 +19,6 @@
     Session::init();
     $db = DataBase::getConnection();
     UserActivity::fix();
-
+//test
     $router = new Router();
     $router->run();
