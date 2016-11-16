@@ -1,6 +1,5 @@
 /.htaccess
 /config/config.php
 .idea/
-core/Logger.php
 files/
 logs/

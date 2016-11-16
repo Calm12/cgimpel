@@ -15,7 +15,9 @@
     @require_once ROOT . '/core/Error.php';
     @require_once ROOT . '/core/DataBase.php';
     @require_once ROOT . '/core/UserActivity.php';
+    @require_once ROOT . '/core/include/log4php/Logger.php';
 
+    Logger::configure(ROOT . '/config/log4php.properties');
     Session::init();
     $db = DataBase::getConnection();
     UserActivity::fix();

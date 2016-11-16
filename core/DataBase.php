@@ -17,6 +17,7 @@
             catch(PDOException $ex){
                 echo 'Database Error. Try again later.';
                 $db = null;
+                exit();
             }
 
             return $db;

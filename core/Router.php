@@ -6,7 +6,7 @@
          *
          */
         public function run(){
-
+            Logger::getRootLogger()->debug('Router init');
             $uri = Utils::getUri();
 
             $piecesOfUrl = explode('/', $uri);

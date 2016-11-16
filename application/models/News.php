@@ -44,9 +44,9 @@
         public static function getCount(){
             global $db;
             $sql = 'SELECT COUNT(*) as count FROM news WHERE deleted = 0;';
-            $stm = $db->prepare($sql);
 
             try{
+                $stm = $db->prepare($sql); //for test
                 $stm->execute();
                 $arr = $stm->fetch();
                 if($arr){
@@ -55,11 +55,13 @@
                 else{
                     return null;
                 }
-
             }
             catch(PDOException $ex){
-                //логи
+
                 return null;
+            }
+            catch(Error $exx){   //throw FATAL ERRORS
+                echo $exx->getMessage();
             }
         }
 
