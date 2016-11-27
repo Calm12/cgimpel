@@ -33,7 +33,7 @@
 
             }
             catch(PDOException $ex){
-                //логи
+				Logger::getRootLogger()->error($ex->getMessage());
                 return null;
             }
         }

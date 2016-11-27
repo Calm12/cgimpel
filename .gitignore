@@ -1,5 +1,5 @@
 /.htaccess
 /config/config.php
-.idea/
-files/
-logs/
+/.idea/
+/files/
+/logs/

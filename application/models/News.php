@@ -34,9 +34,7 @@
             }
             catch(PDOException $ex){
                 $db->rollBack();
-
-                //логи
-
+				Logger::getRootLogger()->error($ex->getMessage());
                 return false;
             }
         }
@@ -57,11 +55,11 @@
                 }
             }
             catch(PDOException $ex){
-
+				Logger::getRootLogger()->error($ex->getMessage());
                 return null;
             }
             catch(Error $exx){   //throw FATAL ERRORS
-                echo $exx->getMessage();
+				Logger::getRootLogger()->fatal($exx->getMessage());
             }
         }
 
@@ -83,7 +81,7 @@
                 return $news;
             }
             catch(PDOException $ex){
-                //логи
+				Logger::getRootLogger()->error($ex->getMessage());
                 return null;
             }
         }
@@ -106,7 +104,7 @@
 
             }
             catch(PDOException $ex){
-                //логи
+				Logger::getRootLogger()->error($ex->getMessage());
                 return null;
             }
         }

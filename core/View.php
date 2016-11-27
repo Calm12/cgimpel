@@ -1,4 +1,5 @@
 <?php
+	require_once ROOT.'/core/exceptions/FileNotFoundException.php';
 
     class View {
 
@@ -18,7 +19,8 @@
                 include ROOT . '/application/views/' . $template . '.php';
             }
             else{
-                include(ROOT.'/application/views/404.php');
+				include(ROOT.'/application/views/404.php');
+				throw new FileNotFoundException('File '.ROOT.'/application/views/' . $template . '.php'.' does not exists!');
             }
         }
 
@@ -27,7 +29,8 @@
                 include($this->getPage());
             }
             else{
-                include(ROOT.'/application/views/pages/404.php');
+				include(ROOT.'/application/views/pages/404.php');
+				throw new FileNotFoundException('File '.$this->getPage().' does not exists!');
             }
         }
 
@@ -83,6 +86,9 @@
             if(file_exists($this->getDynamicMenu())){
                 include($this->getDynamicMenu());
             }
+            else{
+            	throw new FileNotFoundException('File '.$this->getDynamicMenu().' does not exists!');
+			}
         }
 
         public function getDynamicMenu(){
@@ -93,6 +99,9 @@
             if(file_exists($this->getHeaders())){
                 include($this->getHeaders());
             }
+            else{
+				throw new FileNotFoundException('File '.$this->getHeaders().' does not exists!');
+			}
         }
 
         public function getHeaders(){

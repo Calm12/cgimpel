@@ -17,4 +17,16 @@
             }
         }
 
+        public static function log(){
+			$ip = $_SERVER['REMOTE_ADDR'];
+			$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$from = $_SERVER['HTTP_REFERER'];
+			$login = Session::get('user')->getLogin();
+			$used_token = Session::get('user')->getUsedToken();
+			$user_browser = 'NONE';
+			$os = 'NONE';
+
+			Logger::getLogger('users')->info('|'.$ip.'|'.$url.'|'.$from.'|'.$login.'|'.$used_token.'|'.$user_browser.'|'.$os.'|');
+		}
+
     }

@@ -16,7 +16,7 @@
             }
             catch(PDOException $ex){
                 echo 'Database Error. Try again later.';
-                $db = null;
+				Logger::getRootLogger()->fatal('Database connection failed: '.mb_convert_encoding($ex->getMessage(), "utf-8", "windows-1251"));
                 exit();
             }
 

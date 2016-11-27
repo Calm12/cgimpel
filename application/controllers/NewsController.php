@@ -30,8 +30,13 @@
                 '/news/my' => 'Ваши новости',
             ));
             $this->view->setPage('news/index');
-            $this->view->render('template');
-        }
+			try {
+				$this->view->render('template');
+			}
+			catch(FileNotFoundException $ex){
+				Logger::getRootLogger()->error($ex->getMessage());
+			}
+		}
 
 
         public function actionAdd(){ // можно сделать, чтобы панелька редактирования появлялась при нажатии на таб
