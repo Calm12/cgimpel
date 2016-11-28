@@ -5,7 +5,18 @@
         public function actionIndex(){
             $this->checkAccess();
 
-            $this->view->render('template');
+			try{
+				$this->view->setTitle('сабака');
+
+				$this->view->setMenu(array(
+					'/news/add' => 'Мдииии',
+				));
+
+				$this->view->render('template');
+			}
+			catch(FileNotFoundException $ex){
+				Logger::getRootLogger()->error($ex->getMessage());
+			}
         }
 
     }

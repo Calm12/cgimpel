@@ -3,6 +3,7 @@
     $permissions = array(
         '/'                 => 0,
         '/messages/'        => 50,
+		'/messages/dialog'	=> 50,
         '/token/'           => 50,
         '/settings/'        => 25,
         '/news/'            => 0,
