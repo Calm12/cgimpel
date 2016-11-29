@@ -1,6 +1,7 @@
 <?php
 
-    class Model {
-        public function get(){
-        }
+    interface Model {
+
+        public function get();
+
     }

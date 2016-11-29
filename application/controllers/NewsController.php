@@ -2,6 +2,7 @@
 
     require_once ROOT . '/application/models/News.php';
     require_once ROOT . '/core/Paginator.php';
+	require_once ROOT .	'/application/models/Date.php';
 
     class NewsController extends Controller {
 
