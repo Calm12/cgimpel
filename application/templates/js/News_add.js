@@ -21,6 +21,32 @@ function add(){
     });
 }
 
+function update() {
+
+    var id = document.getElementById('id');
+    var title = document.getElementById('newstitle');
+    var body = document.getElementById('letter');
+
+    $.ajax({
+        type: 'POST',
+        url: '/news/update',
+        data: {
+            id: id.value,
+            title: title.value,
+            body: body.value
+        },
+        success: function(res) {
+            if(res === 'updated'){
+                window.location.href = '/news/';
+            }
+            else{
+                alert('Ошибка');
+            }
+        }
+    });
+
+}
+
 jQuery(document).ready(function($){
 
     /* Вставляем tab при нажатии на tab в поле textarea

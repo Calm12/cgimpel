@@ -13,12 +13,18 @@ jQuery(document).ready(function($){
 
     });
 
-});
-/*
-$("#left").click(function() {
-    window.location.href = document.getElementById('left').getAttribute('href');
-});
+    /*$(".control").mouseover(function (event) {
+        $(".actions_menu").css('visibility', 'visible');
+    });
 
-$("#right").click(function() {
-    window.location.href = document.getElementById('right').getAttribute('href');
-});*/
+    $(".control").mouseout(function (event) {
+        $(".actions_menu").css('visibility', 'hidden');
+    })*/
+
+    $('.control').hover(function(){
+        $('.block2').addClass('when_block1_hover');
+    }, function(){
+        $('.block2').removeClass('when_block1_hover');
+    })
+
+});

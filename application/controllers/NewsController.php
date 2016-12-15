@@ -64,6 +64,71 @@
             if(News::create($title, $body, $author)){
                 echo 'created';
             }
-        }
+
+		}
+
+		public function actionUpdate(){
+			$this->checkAccess();
+
+			$id = $_POST['id'];
+			$title = $_POST['title'];
+			$body = nl2br($_POST['body']);
+
+			if(News::edit($id, $title, $body)){
+				echo 'updated';
+			}
+			else{
+				echo 'err';
+			}
+
+		}
+
+		public function actionEdit(){
+			$this->checkAccess();
+
+			$this->view->setTitle('Редактирование новости');
+
+			$this->view->setMenu(array(
+				'/news/' => 'Все новости',
+				'/news/my' => 'Ваши новости',
+			));
+
+			$id = $_GET['id'];
+			$this->view->setContent(News::loadById($id));
+
+			$this->view->setProperties(array(
+				'id' => $id,
+			));
+
+			$this->view->setPage('news/edit');
+			$this->view->render('template');
+		}
+
+        public function actionDelete(){
+			$this->checkAccess();
+
+        	$id = $_POST['id'];
+
+			if(News::delete($id)){
+				echo 'deleted';
+			}
+			else{
+				echo 'err';
+			}
+
+		}
+
+		public function actionRestore(){
+			$this->checkAccess();
+
+			$id = $_POST['id'];
+
+			if(News::restore($id)){
+				echo 'restored';
+			}
+			else{
+				echo 'err';
+			}
+		}
 
     }

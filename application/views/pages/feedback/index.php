@@ -7,6 +7,12 @@
     <? foreach($this->getContent() as $key=>$article){ ?>
 
         <div class="content">
+            <div class="control">
+                <div class="actions_menu">
+                    <a class="actions_menu_item" href="add.php">Удалить</a>
+                    <a class="actions_menu_item" href="https://google.com/">Уйти</a>
+                </div>
+            </div>
 
             <h1><? echo $article->getTitle(); ?></h1>
             <? echo $article->getBody(); ?>
