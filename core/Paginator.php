@@ -43,7 +43,7 @@
         }
 
         public function setOffset($offset){
-            $this->offset = $offset;
+            $this->offset = (int)$offset;
         }
 
         public function getSection(){
@@ -55,6 +55,6 @@
         }
 
         public function setSection($section){
-            $this->section = $section;
+            $this->section = (int)$section;
         }
     }
