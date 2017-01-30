@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 	<link rel="shortcut icon" href="/application/templates/images/favicon.png"/>
 	<link rel="stylesheet" type="text/css" href="/application/templates/css/common.css"/>
 	<?php $this->includeHeaders(); ?>

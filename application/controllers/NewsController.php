@@ -1,37 +1,44 @@
 <?php
 
-    require_once ROOT . '/application/models/News.php';
-    require_once ROOT . '/core/Paginator.php';
-	require_once ROOT .	'/application/models/Date.php';
+	require_once ROOT . '/application/models/News.php';
+	require_once ROOT . '/application/models/NewsComment.php';
+	require_once ROOT . '/core/Paginator.php';
+	require_once ROOT . '/application/models/Date.php';
 
-    class NewsController extends Controller {
+	class NewsController extends Controller{
 
-        public function actionIndex(){
-            $this->checkAccess();
+		public function actionIndex(){
+			$this->checkAccess();
 
-            $this->view->setTitle('Новости');
+			$this->view->setTitle('Новости');
 
-            $this->setPaginator(new Paginator());
-            $this->getPaginator()->setCount(News::getCount());
-            $this->getPaginator()->setOffset((int)($_GET['o'] ?? 0));
-            $this->getPaginator()->setSection((int)($_GET['s'] ?? 10));
+			$this->setPaginator(new Paginator());
+			$this->getPaginator()->setCount(News::getCount());
+			$this->getPaginator()->setOffset((int)($_GET['o'] ?? 0));
+			$this->getPaginator()->setSection((int)($_GET['s'] ?? 10));
 
-            $this->view->setProperties(array(
-                'count' => $this->getPaginator()->getCount(),
-                'offset' => $this->getPaginator()->getOffset(),
-                'section' => $this->getPaginator()->getOffset() + $this->getPaginator()->getSection(),
-                'left' => Utils::gets('o',$this->getPaginator()->getLeftPointer()),
-                'right' => Utils::gets('o',$this->getPaginator()->getRightPointer()),
-            ));
+			$this->view->setProperties(
+				array(
+					'count' => $this->getPaginator()->getCount(),
+					'offset' => $this->getPaginator()->getOffset(),
+					'section' => $this->getPaginator()->getOffset() + $this->getPaginator()->getSection(),
+					'left' => Utils::gets('o', $this->getPaginator()->getLeftPointer()),
+					'right' => Utils::gets('o', $this->getPaginator()->getRightPointer()),
+				)
+			);
 
-            $this->view->setContent(News::load($this->getPaginator()->getOffset(), $this->getPaginator()->getSection()));
+			$this->view->setContent(
+				News::load($this->getPaginator()->getOffset(), $this->getPaginator()->getSection())
+			);
 
-            $this->view->setMenu(array(
-                '/news/add' => 'Добавить новость',
-                '/news/my' => 'Ваши новости',
-            ));
-            $this->view->setPage('news/index');
-			try {
+			$this->view->setMenu(
+				array(
+					'/news/add' => 'Добавить новость',
+					'/news/my' => 'Ваши новости',
+				)
+			);
+			$this->view->setPage('news/index');
+			try{
 				$this->view->render('template');
 			}
 			catch(FileNotFoundException $ex){
@@ -39,38 +46,82 @@
 			}
 		}
 
+		public function actionPost(){
+			$this->checkAccess();
 
-        public function actionAdd(){ // можно сделать, чтобы панелька редактирования появлялась при нажатии на таб
-            $this->checkAccess();
+			$id = (int)$_GET['id'];
 
-            $this->view->setTitle('Добавление новости');
+			$this->setPaginator(new Paginator());
+			$this->getPaginator()->setCount(NewsComment::getCount($id));
+			$this->getPaginator()->setOffset((int)($_GET['o'] ?? 0));
+			$this->getPaginator()->setSection((int)($_GET['s'] ?? 10));
 
-            $this->view->setMenu(array(
-                '/news/' => 'Все новости',
-                '/news/my' => 'Ваши новости',
-            ));
-            $this->view->setPage('news/add');
-            $this->view->render('template');
-        }
+			$this->view->setProperties(
+				array(
+					'count' => $this->getPaginator()->getCount(),
+					'offset' => $this->getPaginator()->getOffset(),
+					'section' => $this->getPaginator()->getOffset() + $this->getPaginator()->getSection(),
+					'left' => Utils::gets('o', $this->getPaginator()->getLeftPointer()),
+					'right' => Utils::gets('o', $this->getPaginator()->getRightPointer()),
+				)
+			);
 
+			$this->view->setProperty('news', News::loadById($id));
+			$this->view->setContent(NewsComment::load($id, $this->getPaginator()->getOffset(), $this->getPaginator()->getSection()));
 
-        public function actionCreate(){
-            $this->checkAccess();
+			$this->view->setMenu(
+				array(
+					'/news/' => 'Все новости',
+					'/news/add' => 'Добавить новость',
+					'/news/my' => 'Ваши новости',
+				)
+			);
 
-            $title = $_POST['title'];
-            $body = nl2br($_POST['body']);
-            $author = User::getUser()->getId();
+			try{
+				$this->view->setTitle($this->view->getProperty('news')->getTitle());
+			}
+			catch(Error $ex){
+				Logger::getRootLogger()->warn('News not found! ' . $ex->getMessage());
+				$this->view->render('404');
+				exit();
+			}
 
-            if(News::create($title, $body, $author)){
-                echo 'created';
-            }
+			$this->view->setPage('news/post');
+			$this->view->render('template');
+		}
+
+		public function actionAdd(){ // можно сделать, чтобы панелька редактирования появлялась при нажатии на таб
+			$this->checkAccess();
+
+			$this->view->setTitle('Добавление новости');
+
+			$this->view->setMenu(
+				array(
+					'/news/' => 'Все новости',
+					'/news/my' => 'Ваши новости',
+				)
+			);
+			$this->view->setPage('news/add');
+			$this->view->render('template');
+		}
+
+		public function actionCreate(){
+			$this->checkAccess();
+
+			$title = $_POST['title'];
+			$body = nl2br($_POST['body']);
+			$author = User::getUser()->getId();
+
+			if(News::create($title, $body, $author)){
+				echo 'created';
+			}
 
 		}
 
 		public function actionUpdate(){
 			$this->checkAccess();
 
-			$id = $_POST['id'];
+			$id = (int)$_POST['id'];
 			$title = $_POST['title'];
 			$body = nl2br($_POST['body']);
 
@@ -88,26 +139,30 @@
 
 			$this->view->setTitle('Редактирование новости');
 
-			$this->view->setMenu(array(
-				'/news/' => 'Все новости',
-				'/news/my' => 'Ваши новости',
-			));
+			$this->view->setMenu(
+				array(
+					'/news/' => 'Все новости',
+					'/news/my' => 'Ваши новости',
+				)
+			);
 
-			$id = $_GET['id'];
+			$id = (int)$_GET['id'];
 			$this->view->setContent(News::loadById($id));
 
-			$this->view->setProperties(array(
-				'id' => $id,
-			));
+			$this->view->setProperties(
+				array(
+					'id' => $id,
+				)
+			);
 
 			$this->view->setPage('news/edit');
 			$this->view->render('template');
 		}
 
-        public function actionDelete(){
+		public function actionDelete(){
 			$this->checkAccess();
 
-        	$id = $_POST['id'];
+			$id = (int)$_POST['id'];
 
 			if(News::delete($id)){
 				echo 'deleted';
@@ -121,7 +176,7 @@
 		public function actionRestore(){
 			$this->checkAccess();
 
-			$id = $_POST['id'];
+			$id = (int)$_POST['id'];
 
 			if(News::restore($id)){
 				echo 'restored';
@@ -131,4 +186,4 @@
 			}
 		}
 
-    }
+	}

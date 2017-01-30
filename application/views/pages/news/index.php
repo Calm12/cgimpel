@@ -12,8 +12,16 @@
 
 			<h1><? echo $article->getTitle(); ?></h1>
 			<? echo $article->getBody(); ?>
+			<br/>
 			<div class="post_info"><? echo Date::convertDate($article->getDate()); ?> <a
-					href="users/calm">@<? echo $article->getAuthor() ?></a></div>
+					href="/users/<? echo $article->getAuthor() ?>">@<? echo $article->getAuthor() ?></a></div>
+			<div class="post_comments">
+                <a href="/news/post?id=<? echo $article->getId() ?>">
+                    <div class="comments_icon"></div>
+                    <!--img src="/application/templates/images/comments.png" style="vertical-align: middle;" width="20" height="18" alt="Комментировать"/-->
+                    <? echo NewsComment::getCount($article->getId()); ?>
+                </a>
+            </div>
 
 		</div>
 

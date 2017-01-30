@@ -125,6 +125,7 @@
             }
             catch(Error $exx){   //throw FATAL ERRORS
 				Logger::getRootLogger()->fatal($exx->getMessage());
+				return null;
             }
         }
 
@@ -153,7 +154,7 @@
 
         public static function loadById(int $id){
             global $db;
-            $sql = 'SELECT * FROM news WHERE id = :id AND deleted = 0;';
+            $sql = 'SELECT n.*, a.login as author FROM news n LEFT JOIN accounts a ON a.id = n.author WHERE n.id = :id AND n.deleted = 0;';
             $stm = $db->prepare($sql);
 
             try{

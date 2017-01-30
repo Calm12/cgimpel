@@ -141,7 +141,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     border-radius: 2px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     word-wrap: break-word;
+}
 
+.comment_content {
+    margin: 10px 10px 10px 10px;
+    padding: 15px 20px 15px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    word-wrap: break-word;
 }
 
 .post_info {
@@ -151,10 +159,59 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: 400;
     line-height: 14px;
     color: #939393;
+    display: inline-block;
 }
 
+.comment_author {
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.comment_info {
+    padding: 5px 0 1px;
+    font-family: Roboto, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 14px;
+    color: #939393;
+}
+
+.post_comments {
+    padding: 10px 0 10px;
+    font-family: Roboto, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 14px;
+    white-space: nowrap;
+    /*margin-left: 77%;*/
+    display: inline-block;
+    float: right;
+}
+
+.comments_icon{
+    vertical-align: middle;
+    width: 21px;
+    height: 18px;
+    /*background: url(/application/templates/images/comments.svg) no-repeat 50%;*/
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjFweCIgaGVpZ2h0PSIxOHB4IiB2aWV3Qm94PSItMC4wMDU1MTQ3MSAwIDIxLjAxMSAxOCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgID48ZGVmcyBpZD0ic3ZnRWRpdG9yRGVmcyI+PHBvbHlnb24gaWQ9InN2Z0VkaXRvclNoYXBlRGVmcyIgZmlsbD0ia2hha2kiIHN0cm9rZT0iYmxhY2siIHN0eWxlPSJ2ZWN0b3ItZWZmZWN0OiBub24tc2NhbGluZy1zdHJva2U7IHN0cm9rZS13aWR0aDogMXB4OyIvPjwvZGVmcz48cmVjdCBpZD0ic3ZnRWRpdG9yQmFja2dyb3VuZCIgeD0iMCIgeT0iMCIgd2lkdGg9IjIxIiBoZWlnaHQ9IjE4IiBzdHlsZT0iZmlsbDogbm9uZTsgc3Ryb2tlOiBub25lOyIvPjxwYXRoIGQ9Ik0tMTEuOTMwNDY5NDM1MjAzNTAyLC0xLjIzOTc3MTk3MzI3MDc0NzdhMC44MjUyOTgwMDAwMDAwMDA2LDAuODI1Mjk4MDAwMDAwMDAwNiwwLDAsMSwtMC43NzAzMzQ5MjgyMjk2NjM4LC0wLjczMjA1NzQxNjI2Nzk0MjJ2LTQuNjUwNzE3NzAzMzQ5MjgzYTEsMSwwLDAsMSwwLjg0Njg4OTk1MjE1MzEwOTUsLTAuNzMyMDU3NDE2MjY3OTQ0aDYuNjEyNDQwMTkxMzg3NTU2YTEsMSwwLDAsMSwwLjc3MDMzNDkyODIyOTY2OTEsMC44ODUxNjc0NjQxMTQ4MzF2NC41NzQxNjI2Nzk0MjU4Mzg1YTEsMSwwLDAsMSwtMC43NzAzMzQ5MjgyMjk2NjY0LDAuNzMyMDU3NDE2MjY3OTQyMmgtMi40NTkzMzAxNDM1NDA2NjhsLTAuMDQ3ODQ2ODg5OTUyMTUyNywxLjY4ODk5NTIxNTMxMTAwODhsLTEuODgwMzgyNzc1MTE5NjE3NCwtMS43MjcyNzI3MjcyNzI3Mjg0WiIgaWQ9ImNvbW1lbnRzX2ljb25fc2hhcGUiIHN0eWxlPSJ2ZWN0b3ItZWZmZWN0OiBub24tc2NhbGluZy1zdHJva2U7IHN0cm9rZS13aWR0aDogMHB4OyBmaWxsOiByZ2IoMTk2LCAyMTAsIDIyNCk7IGZpbGwtb3BhY2l0eTogMTsgZmlsbC1ydWxlOiBldmVub2RkOyBzdHJva2U6IHJnYigxOTYsIDIxMCwgMjI0KTsiIHRyYW5zZm9ybT0ibWF0cml4KDIuNTQwMjIgMCAwIDIuMjYwMzkgMzIuMjgyMiAxNi43MTIpIi8+PC9zdmc+') 50% no-repeat;
+    display: inline-block;
+}
+
+/*
+a svg .comments_icon_shape {
+    fill: #c4d2e0;
+    fill-opacity: 1;
+}
+
+a svg:hover .comments_icon_shape {
+    fill: #ff0000;
+}
+*/
+
 .control {
-    background: url(/application/templates/images/post_more.png) no-repeat 50%;
+    /*background: url(/application/templates/images/post_more.png) no-repeat 50%;*/
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M5%2014c1.1%200%202-.9%202-2s-.9-2-2-2-2%20.9-2%202%20.9%202%202%202zm7%200c1.1%200%202-.9%202-2s-.9-2-2-2-2%20.9-2%202%20.9%202%202%202zm7%200c1.1%200%202-.9%202-2s-.9-2-2-2-2%20.9-2%202%20.9%202%202%202z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat;
+    opacity: .7;
     position: absolute;
     width: 20px;
     height: 24px;
@@ -165,7 +222,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .actions_menu{
     opacity: 0;
-    top: 100px;
+    top: 50px;
     margin-left:-50px;
     margin-top:17px;
     font-weight: 400;
@@ -182,6 +239,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
     filter: alpha(opacity=0);
 
+}
+
+.control:hover{
+    opacity: 1;
 }
 
 .control:hover .actions_menu{
@@ -211,6 +272,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     text-decoration: none;
     background-color: #e4eaf0
 }
+
 
 /* Left Sidebar
 -----------------------------------------------------------------------------*/
