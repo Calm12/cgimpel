@@ -67,7 +67,9 @@
 			);
 
 			$this->view->setProperty('news', News::loadById($id));
-			$this->view->setContent(NewsComment::load($id, $this->getPaginator()->getOffset(), $this->getPaginator()->getSection()));
+			$this->view->setContent(
+				NewsComment::load($id, $this->getPaginator()->getOffset(), $this->getPaginator()->getSection())
+			);
 
 			$this->view->setMenu(
 				array(
@@ -114,6 +116,24 @@
 
 			if(News::create($title, $body, $author)){
 				echo 'created';
+			}
+
+		}
+
+		public function actionCommentCreate(){
+			$this->checkAccess();
+
+			if($_POST['key'] === '79b3b448c88c46ea8be90b3a993c2313'){
+				$post = $_POST['post'];
+				$body = nl2br($_POST['body']);
+				$author = User::getUser()->getId();
+
+				if($id = NewsComment::create($body, $post, $author)){
+					echo '{"response":"created", "comment":{"id":"' . $id . '", "body":"' . $body . '", "post":"' . $post . '", "author":"' . User::getUser()->getLogin() . '"}}';
+				}
+			}
+			else{
+				echo '{"response":"error", "code":"0", "body":"Access denied!"}';
 			}
 
 		}

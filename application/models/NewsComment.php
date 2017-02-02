@@ -30,9 +30,9 @@
 						':author' => $author,
 					)
 				);
+				$insertId = $db->lastInsertId();
 				$db->commit();
-
-				return $result;
+				return $insertId;
 			}
 			catch(PDOException $ex){
 				$db->rollBack();
