@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="shortcut icon" href="/application/templates/images/favicon.png" />
     <link rel="stylesheet" type="text/css" href="/application/templates/css/auth.css" />
     <script type="text/javascript" src="/application/templates/js/jquery-1.11.1.min.js"></script>
