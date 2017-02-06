@@ -114,7 +114,7 @@ function postViewDelete(el) {
             },
             success: function (res) {
                 if (res === 'deleted') {
-                    document.getElementById('post').innerHTML = 'Новость удалена. <a onclick="postRestore(this);">Вернуть</a>';
+                    document.getElementById('post').innerHTML = 'Новость удалена. <a onclick="postViewRestore(this);">Вернуть</a>';
                 }
                 else {
                     alert('Ошибка удаления');
@@ -190,3 +190,24 @@ function postRestore(el) {
 
 }
 
+function postViewRestore(el) {
+
+    var id = el.parentNode.dataset.id;
+
+    $.ajax({
+        type: 'POST',
+        url: '/news/restore',
+        data: {
+            id: id
+        },
+        success: function (res) {
+            if (res === 'restored') {
+                window.location.reload();
+            }
+            else {
+                alert('Ошибка восстановления');
+            }
+        }
+    });
+
+}
