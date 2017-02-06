@@ -7,13 +7,15 @@
 		private $date;
 		private $post;
 		private $author;
+		private $authorLogin;
 
-		public function __construct($id, $body, $date, $post, $author){
+		public function __construct($id, $body, $date, $post, $author, $authorLogin){
 			$this->id = $id;
 			$this->body = $body;
 			$this->date = $date;
 			$this->post = $post;
 			$this->author = $author;
+			$this->authorLogin = $authorLogin;
 		}
 
 		public static function create($body, $post, $author){
@@ -148,7 +150,7 @@
 
 		public static function load(int $post, int $offset, int $count){
 			global $db;
-			$sql = 'SELECT n.*, a.login as author FROM news_comment n LEFT JOIN accounts a ON a.id = n.author WHERE n.deleted = 0 AND n.post = :post ORDER BY n.id ASC LIMIT :offset,:count;';
+			$sql = 'SELECT n.*, a.login as author_login FROM news_comment n LEFT JOIN accounts a ON a.id = n.author WHERE n.deleted = 0 AND n.post = :post ORDER BY n.id ASC LIMIT :offset,:count;';
 			$stm = $db->prepare($sql);
 
 			try{
@@ -159,7 +161,7 @@
 
 				$comments = array();
 				while($arr = $stm->fetch()){
-					$comments[] = new NewsComment($arr['id'], $arr['body'], $arr['date'], $arr['post'], $arr['author']);
+					$comments[] = new NewsComment($arr['id'], $arr['body'], $arr['date'], $arr['post'], $arr['author'], $arr['author_login']);
 				}
 
 				return $comments;
@@ -173,7 +175,7 @@
 
 		public static function loadById(int $id){
 			global $db;
-			$sql = 'SELECT n.*, a.login as author FROM news_comment n LEFT JOIN accounts a ON a.id = n.author WHERE n.id = :id AND n.deleted = 0;';
+			$sql = 'SELECT n.*, a.login as author_login FROM news_comment n LEFT JOIN accounts a ON a.id = n.author WHERE n.id = :id AND n.deleted = 0;';
 			$stm = $db->prepare($sql);
 
 			try{
@@ -181,7 +183,31 @@
 				$stm->execute();
 				$arr = $stm->fetch();
 				if($arr){
-					return new NewsComment($arr['id'], $arr['body'], $arr['date'], $arr['post'], $arr['author']);
+					return new NewsComment($arr['id'], $arr['body'], $arr['date'], $arr['post'], $arr['author'], $arr['author_login']);
+				}
+				else{
+					return null;
+				}
+
+			}
+			catch(PDOException $ex){
+				Logger::getRootLogger()->error($ex->getMessage());
+
+				return null;
+			}
+		}
+
+		public static function loadDeletedById(int $id){
+			global $db;
+			$sql = 'SELECT n.*, a.login as author_login FROM news_comment n LEFT JOIN accounts a ON a.id = n.author WHERE n.id = :id AND n.deleted = 1;';
+			$stm = $db->prepare($sql);
+
+			try{
+				$stm->bindParam(':id', $id);
+				$stm->execute();
+				$arr = $stm->fetch();
+				if($arr){
+					return new NewsComment($arr['id'], $arr['body'], $arr['date'], $arr['post'], $arr['author'], $arr['author_login']);
 				}
 				else{
 					return null;
@@ -216,6 +242,10 @@
 
 		public function getAuthor(){
 			return $this->author;
+		}
+
+		public function getAuthorLogin(){
+			return $this->authorLogin;
 		}
 
 	}

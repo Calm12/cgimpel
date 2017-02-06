@@ -232,6 +232,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     box-sizing: border-box;
 }
 
+#flat_button:hover {
+    background-color: #6888ad;
+    text-decoration: none;
+}
+
+.button_animation {
+    background: transparent url("/application/templates/images/upload.gif") no-repeat scroll center center;
+}
+
+.button_animation_container {
+    padding: 0 30px 0;
+}
+
 .post_comments {
     padding: 10px 0 10px;
     font-family: Roboto, sans-serif;
@@ -244,25 +257,23 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     float: right;
 }
 
+/*.post_comments_hover {
+    padding: 4px 7px 5px;
+}
+
+.post_comments_hover:hover {
+    background-color: #f2f4f7;
+    border-radius: 2px;
+}*/
+
 .comments_icon{
     vertical-align: middle;
     width: 21px;
     height: 18px;
-    /*background: url(/application/templates/images/comments.svg) no-repeat 50%;*/
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjFweCIgaGVpZ2h0PSIxOHB4IiB2aWV3Qm94PSItMC4wMDU1MTQ3MSAwIDIxLjAxMSAxOCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgID48ZGVmcyBpZD0ic3ZnRWRpdG9yRGVmcyI+PHBvbHlnb24gaWQ9InN2Z0VkaXRvclNoYXBlRGVmcyIgZmlsbD0ia2hha2kiIHN0cm9rZT0iYmxhY2siIHN0eWxlPSJ2ZWN0b3ItZWZmZWN0OiBub24tc2NhbGluZy1zdHJva2U7IHN0cm9rZS13aWR0aDogMXB4OyIvPjwvZGVmcz48cmVjdCBpZD0ic3ZnRWRpdG9yQmFja2dyb3VuZCIgeD0iMCIgeT0iMCIgd2lkdGg9IjIxIiBoZWlnaHQ9IjE4IiBzdHlsZT0iZmlsbDogbm9uZTsgc3Ryb2tlOiBub25lOyIvPjxwYXRoIGQ9Ik0tMTEuOTMwNDY5NDM1MjAzNTAyLC0xLjIzOTc3MTk3MzI3MDc0NzdhMC44MjUyOTgwMDAwMDAwMDA2LDAuODI1Mjk4MDAwMDAwMDAwNiwwLDAsMSwtMC43NzAzMzQ5MjgyMjk2NjM4LC0wLjczMjA1NzQxNjI2Nzk0MjJ2LTQuNjUwNzE3NzAzMzQ5MjgzYTEsMSwwLDAsMSwwLjg0Njg4OTk1MjE1MzEwOTUsLTAuNzMyMDU3NDE2MjY3OTQ0aDYuNjEyNDQwMTkxMzg3NTU2YTEsMSwwLDAsMSwwLjc3MDMzNDkyODIyOTY2OTEsMC44ODUxNjc0NjQxMTQ4MzF2NC41NzQxNjI2Nzk0MjU4Mzg1YTEsMSwwLDAsMSwtMC43NzAzMzQ5MjgyMjk2NjY0LDAuNzMyMDU3NDE2MjY3OTQyMmgtMi40NTkzMzAxNDM1NDA2NjhsLTAuMDQ3ODQ2ODg5OTUyMTUyNywxLjY4ODk5NTIxNTMxMTAwODhsLTEuODgwMzgyNzc1MTE5NjE3NCwtMS43MjcyNzI3MjcyNzI3Mjg0WiIgaWQ9ImNvbW1lbnRzX2ljb25fc2hhcGUiIHN0eWxlPSJ2ZWN0b3ItZWZmZWN0OiBub24tc2NhbGluZy1zdHJva2U7IHN0cm9rZS13aWR0aDogMHB4OyBmaWxsOiByZ2IoMTk2LCAyMTAsIDIyNCk7IGZpbGwtb3BhY2l0eTogMTsgZmlsbC1ydWxlOiBldmVub2RkOyBzdHJva2U6IHJnYigxOTYsIDIxMCwgMjI0KTsiIHRyYW5zZm9ybT0ibWF0cml4KDIuNTQwMjIgMCAwIDIuMjYwMzkgMzIuMjgyMiAxNi43MTIpIi8+PC9zdmc+') 50% no-repeat;
+    background: url(/application/templates/images/comments.svg) no-repeat 50%;
+    /*background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjFweCIgaGVpZ2h0PSIxOHB4IiB2aWV3Qm94PSItMC4wMDU1MTQ3MSAwIDIxLjAxMSAxOCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgID48ZGVmcyBpZD0ic3ZnRWRpdG9yRGVmcyI+PHBvbHlnb24gaWQ9InN2Z0VkaXRvclNoYXBlRGVmcyIgZmlsbD0ia2hha2kiIHN0cm9rZT0iYmxhY2siIHN0eWxlPSJ2ZWN0b3ItZWZmZWN0OiBub24tc2NhbGluZy1zdHJva2U7IHN0cm9rZS13aWR0aDogMXB4OyIvPjwvZGVmcz48cmVjdCBpZD0ic3ZnRWRpdG9yQmFja2dyb3VuZCIgeD0iMCIgeT0iMCIgd2lkdGg9IjIxIiBoZWlnaHQ9IjE4IiBzdHlsZT0iZmlsbDogbm9uZTsgc3Ryb2tlOiBub25lOyIvPjxwYXRoIGQ9Ik0tMTEuOTMwNDY5NDM1MjAzNTAyLC0xLjIzOTc3MTk3MzI3MDc0NzdhMC44MjUyOTgwMDAwMDAwMDA2LDAuODI1Mjk4MDAwMDAwMDAwNiwwLDAsMSwtMC43NzAzMzQ5MjgyMjk2NjM4LC0wLjczMjA1NzQxNjI2Nzk0MjJ2LTQuNjUwNzE3NzAzMzQ5MjgzYTEsMSwwLDAsMSwwLjg0Njg4OTk1MjE1MzEwOTUsLTAuNzMyMDU3NDE2MjY3OTQ0aDYuNjEyNDQwMTkxMzg3NTU2YTEsMSwwLDAsMSwwLjc3MDMzNDkyODIyOTY2OTEsMC44ODUxNjc0NjQxMTQ4MzF2NC41NzQxNjI2Nzk0MjU4Mzg1YTEsMSwwLDAsMSwtMC43NzAzMzQ5MjgyMjk2NjY0LDAuNzMyMDU3NDE2MjY3OTQyMmgtMi40NTkzMzAxNDM1NDA2NjhsLTAuMDQ3ODQ2ODg5OTUyMTUyNywxLjY4ODk5NTIxNTMxMTAwODhsLTEuODgwMzgyNzc1MTE5NjE3NCwtMS43MjcyNzI3MjcyNzI3Mjg0WiIgaWQ9ImNvbW1lbnRzX2ljb25fc2hhcGUiIHN0eWxlPSJ2ZWN0b3ItZWZmZWN0OiBub24tc2NhbGluZy1zdHJva2U7IHN0cm9rZS13aWR0aDogMHB4OyBmaWxsOiByZ2IoMTk2LCAyMTAsIDIyNCk7IGZpbGwtb3BhY2l0eTogMTsgZmlsbC1ydWxlOiBldmVub2RkOyBzdHJva2U6IHJnYigxOTYsIDIxMCwgMjI0KTsiIHRyYW5zZm9ybT0ibWF0cml4KDIuNTQwMjIgMCAwIDIuMjYwMzkgMzIuMjgyMiAxNi43MTIpIi8+PC9zdmc+') 50% no-repeat;*/
     display: inline-block;
 }
-
-/*
-a svg .comments_icon_shape {
-    fill: #c4d2e0;
-    fill-opacity: 1;
-}
-
-a svg:hover .comments_icon_shape {
-    fill: #ff0000;
-}
-*/
 
 .control {
     /*background: url(/application/templates/images/post_more.png) no-repeat 50%;*/

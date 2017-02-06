@@ -9,6 +9,8 @@
         '/news/'            => 0,
 		'/news/post'		=> 0,
 		'/news/commentcreate' => 50,
+		'/news/commentdelete' => 50,
+		'/news/commentrestore' => 50,
         '/news/add'         => 150,
 		'/news/delete'		=> 150,
 		'/news/restore'		=> 150,

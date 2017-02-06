@@ -3,8 +3,12 @@
     <div class="content" id="post" data-id="<? echo $this->getProperty('news')->getId() ?>">
         <div class="control">
             <div class="actions_menu">
+	        <? if(User::getUser()->getAccessLevel() < 150):?>
+                <a class="actions_menu_item" href="/feedback/new">Пожаловаться</a>
+	        <? else: ?>
                 <a class="actions_menu_item" href="/news/edit?id=<? echo $this->getProperty('news')->getId(); ?>">Редактировать</a>
-                <a class="actions_menu_item" onclick="postDelete(this);">Удалить</a>
+                <a class="actions_menu_item" onclick="postViewDelete(this);">Удалить</a>
+			<? endif; ?>
             </div>
         </div>
 
@@ -25,12 +29,20 @@
             <div class="comment_content" id="<? echo $comment->getId() ?>">
                 <div class="control">
                     <div class="actions_menu">
-                        <a class="actions_menu_item"
-                           href="/news/edit?id=<? echo $this->getProperty('news')->getId() ?>">Пожаловаться</a>
+                        <? if(User::getUser()->getAccessLevel() > 149){?>
+                            <a class="actions_menu_item" href="/feedback/new">Пожаловаться</a>
+                            <a class="actions_menu_item" onclick="alert('asdasdasd');">Редактировать</a>
+                            <a class="actions_menu_item" onclick="commentDelete(this);">Удалить</a>
+                        <? }elseif(User::getUser()->getId() == $comment->getAuthor()){ ?>
+                            <!--a class="actions_menu_item" onclick="alert('asdasdasd');">Редактировать</a-->
+                            <a class="actions_menu_item" onclick="commentDelete(this);">Удалить</a>
+                        <? }else{ ?>
+                            <a class="actions_menu_item" href="/feedback/new">Пожаловаться</a>
+                        <? } ?>
                     </div>
                 </div>
                 <div class="comment_author"><a
-                            href="/users/<? echo $comment->getAuthor() ?>">@<? echo $comment->getAuthor() ?></a></div>
+                            href="/users/<? echo $comment->getAuthorLogin() ?>">@<? echo $comment->getAuthorLogin() ?></a></div>
 				<? echo $comment->getBody(); ?>
                 <br/>
                 <div class="comment_info"><? echo Date::convertDate($comment->getDate()); ?></div>

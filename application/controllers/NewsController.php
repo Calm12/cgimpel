@@ -138,6 +138,63 @@
 
 		}
 
+		public function actionCommentDelete(){
+			$this->checkAccess();
+
+			$id = (int)$_POST['id'];
+
+			if((NewsComment::loadById($id)->getAuthor() == User::getUser()->getId()) || (User::getUser()->getAccessLevel() > 149)){
+				if(NewsComment::delete($id)){
+					echo 'deleted';
+				}
+				else{
+					echo 'err';
+				}
+			}
+			else{
+				echo 'Access denied!';
+			}
+
+		}
+
+		public function actionCommentRestore(){
+			$this->checkAccess();
+
+			$id = (int)$_POST['id'];
+			if((User::getUser()->getAccessLevel() > 149) || (NewsComment::loadDeletedById($id)->getAuthor() == User::getUser()->getId())){
+				if(NewsComment::restore($id)){
+					echo 'restored';
+				}
+				else{
+					echo 'err';
+				}
+			}
+			else{
+				echo 'Access denied!';
+			}
+
+		}
+
+		public function actionCommentUpdate(){
+			$this->checkAccess();
+
+			$id = (int)$_POST['id'];
+			$body = nl2br($_POST['body']);
+
+			if((NewsComment::loadById($id)->getAuthor() == User::getUser()->getId()) || (User::getUser()->getAccessLevel() > 149)){
+				if(NewsComment::edit($id, $body)){
+					echo 'updated';
+				}
+				else{
+					echo 'err';
+				}
+			}
+			else{
+				echo 'Access denied!';
+			}
+
+		}
+
 		public function actionUpdate(){
 			$this->checkAccess();
 

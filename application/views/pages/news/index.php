@@ -5,8 +5,12 @@
 		<div class="content" id="<? echo $article->getId() ?>">
 			<div class="control">
 				<div class="actions_menu">
+		        <? if(User::getUser()->getAccessLevel() < 150):?>
+                    <a class="actions_menu_item" href="/feedback/new">Пожаловаться</a>
+		        <? else: ?>
 					<a class="actions_menu_item" href="/news/edit?id=<? echo $article->getId() ?>">Редактировать</a>
 					<a class="actions_menu_item" onclick="postDelete(this);">Удалить</a>
+				<? endif; ?>
 				</div>
 			</div>
 
