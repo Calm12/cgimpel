@@ -31,10 +31,10 @@
                     <div class="actions_menu">
                         <? if(User::getUser()->getAccessLevel() > 149){?>
                             <a class="actions_menu_item" href="/feedback/new">Пожаловаться</a>
-                            <a class="actions_menu_item" onclick="alert('asdasdasd');">Редактировать</a>
+                            <a class="actions_menu_item" onclick="commentEditShow(this);">Редактировать</a>
                             <a class="actions_menu_item" onclick="commentDelete(this);">Удалить</a>
                         <? }elseif(User::getUser()->getId() == $comment->getAuthor()){ ?>
-                            <!--a class="actions_menu_item" onclick="alert('asdasdasd');">Редактировать</a-->
+                            <!--a class="actions_menu_item" onclick="commentEditShow(this);">Редактировать</a-->
                             <a class="actions_menu_item" onclick="commentDelete(this);">Удалить</a>
                         <? }else{ ?>
                             <a class="actions_menu_item" href="/feedback/new">Пожаловаться</a>
@@ -43,8 +43,7 @@
                 </div>
                 <div class="comment_author"><a
                             href="/users/<? echo $comment->getAuthorLogin() ?>">@<? echo $comment->getAuthorLogin() ?></a></div>
-				<? echo $comment->getBody(); ?>
-                <br/>
+                <div class="body"><? echo $comment->getBody(); ?></div>
                 <div class="comment_info"><? echo Date::convertDate($comment->getDate()); ?></div>
             </div>
 
@@ -53,9 +52,9 @@
 	<? }?>
 
     <div class="comment_content" id="comment_add_area">
-        <textarea id="comment_text" placeholder="Введите текст вашего комментария..." maxlength="4000" required></textarea>
+        <textarea id="comment_text" class="comment_text" placeholder="Введите текст вашего комментария..." maxlength="4000" required></textarea>
         <div class="comment_add_control">
-            <button type="button" id="flat_button">Отправить</button>
+            <button type="button" id="flat_button" class="flat_button_comments">Отправить</button>
         </div>
     </div>
 

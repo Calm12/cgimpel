@@ -31,13 +31,14 @@ $(document).ready(function() {
                     if (response.response === 'created') {
                         $('#comment_text').val('');
                         var child = '<div class="comment_content" id="' + response.comment.id + '">' +
-                            '<div class="control"><div class="actions_menu"><a class="actions_menu_item" href="/">Пожаловаться</a></div></div>' +
+                            '<div class="control"><div class="actions_menu"><a class="actions_menu_item" onclick="commentEditShow(this);">Редактировать</a>' +
+                            '<a class="actions_menu_item" onclick="commentDelete(this);">Удалить</a></div></div>' +
                             '<div class="comment_author"><a href="/users/' + response.comment.author + '">@' + response.comment.author + '</a>' +
                             '</div>' + response.comment.body + '<br><div class="comment_info">только что</div></div>';
 
                         $('#comments').append(child);
 
-                        $('body,html').animate({scrollTop: 0}, 400);
+                        //$('body,html').animate({scrollTop: 0}, 400); // по просьбе сиськи
                         $('#comment_add_area').fadeOut(400);
                     }
                     else {
@@ -53,6 +54,50 @@ $(document).ready(function() {
     });
 
 });
+
+var comment = '';
+var editing = false;
+
+function commentEditShow(el){
+    if(!editing) {
+        var box = el.parentNode.parentNode.parentNode;
+        var id = box.id;
+        comment = box.innerHTML;
+        var body = box.getElementsByClassName('body')[0].innerHTML;
+
+        box.innerHTML = '<textarea id="comment_text_edit" class="comment_text" placeholder="Введите текст вашего комментария..." maxlength="4000" required>' + body.replace(/<br\s*[\/]?>/gi, "\n") + '</textarea> ' +
+            '<div class="comment_add_control"> ' +
+            '<button type="button" id="edit_button" class="flat_button_comments" onclick="commentEditHide(this)">Сохранить</button> ' +
+            '</div>';
+
+        editing = true;
+    }
+}
+
+function commentEditHide(el){
+    var box = el.parentNode.parentNode;
+    var body = box.getElementsByTagName('textarea')[0].value;
+    var id = box.id;
+
+    $.ajax({
+        type: 'POST',
+        url: '/news/commentupdate',
+        data: {
+            id: id,
+            body: body
+        },
+        success: function (res) {
+            if (res === 'updated') {
+                box.innerHTML = comment;
+                box.getElementsByClassName('body')[0].innerHTML = body.replace(/([^>])\n/g, '$1<br/>');
+                editing = false;
+            }
+            else {
+                console.log('Ошибка сохранения '+res);
+            }
+        }
+    });
+}
 
 function add(){
 
