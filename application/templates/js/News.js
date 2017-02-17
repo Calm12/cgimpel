@@ -65,7 +65,7 @@ function commentEditShow(el){
         comment = box.innerHTML;
         var body = box.getElementsByClassName('body')[0].innerHTML;
 
-        box.innerHTML = '<textarea id="comment_text_edit" class="comment_text" placeholder="Введите текст вашего комментария..." maxlength="4000" required>' + body.replace(/<br\s*[\/]?>/gi, "\n") + '</textarea> ' +
+        box.innerHTML = '<textarea id="comment_text_edit" class="comment_text" placeholder="Введите текст вашего комментария..." maxlength="4000" required>' + body.replace(/<br\s*[\/]?>+/gi, "") + '</textarea> ' +
             '<div class="comment_add_control"> ' +
             '<button type="button" id="edit_button" class="flat_button_comments" onclick="commentEditHide(this)">Сохранить</button> ' +
             '</div>';
@@ -89,7 +89,7 @@ function commentEditHide(el){
         success: function (res) {
             if (res === 'updated') {
                 box.innerHTML = comment;
-                box.getElementsByClassName('body')[0].innerHTML = body.replace(/([^>])\n/g, '$1<br/>');
+                box.getElementsByClassName('body')[0].innerHTML = body.replace(/([^>])\n+/g, '$1<br/>');
                 editing = false;
             }
             else {

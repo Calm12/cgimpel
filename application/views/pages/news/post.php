@@ -34,7 +34,7 @@
                             <a class="actions_menu_item" onclick="commentEditShow(this);">Редактировать</a>
                             <a class="actions_menu_item" onclick="commentDelete(this);">Удалить</a>
                         <? }elseif(User::getUser()->getId() == $comment->getAuthor()){ ?>
-                            <!--a class="actions_menu_item" onclick="commentEditShow(this);">Редактировать</a-->
+                            <a class="actions_menu_item" onclick="commentEditShow(this);">Редактировать</a>
                             <a class="actions_menu_item" onclick="commentDelete(this);">Удалить</a>
                         <? }else{ ?>
                             <a class="actions_menu_item" href="/feedback/new">Пожаловаться</a>
